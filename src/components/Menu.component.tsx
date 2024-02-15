@@ -27,7 +27,7 @@ const MenuButton = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  color: #fff;
+  color: #ffffff;
 `
 
 const MenuComponent = () => {
