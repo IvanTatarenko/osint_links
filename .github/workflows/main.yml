@@ -1,32 +1,28 @@
-name: Build and Deploy to GitHub Pages
-
+name: Build and Deploy
 on:
   push:
     branches:
-      - master # Замініть "master" на назву вашої основної гілки, якщо потрібно
-
+      - main 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Source
-        uses: actions/checkout@v2
-      
-      - name: Setup Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14' # Ви можете змінити версію Node.js залежно від вашого проєкту
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build Project
-        run: npm run build
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: gh-pages # Ця гілка буде використовуватися для деплойменту
-          folder: build # Папка, що містить збудовані файли проєкту
-          clean: true # Видаляє будь-які файли, які не містяться у поточному або вказаному коміті
+    - uses: actions/checkout@v2
+    
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14'
+    
+    - name: Build React app
+      run: |
+        npm install
+        npm run build
+    
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: build 
+        CLEAN: true
