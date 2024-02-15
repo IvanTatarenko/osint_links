@@ -1,0 +1,28 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - main  # або master, залежно від назви вашої гілки
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14'
+    
+    - name: Build React app
+      run: |
+        npm install
+        npm run build
+    
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages  # Розгортання в гілку gh-pages
+        FOLDER: build  # Папка, де знаходиться збірка проекту
+        CLEAN: true  # Очищати існуючі файли перед розгортанням
