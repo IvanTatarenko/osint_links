@@ -32,7 +32,8 @@ const UniversalPage: React.FC<{
 
   useEffect(() => {
     setLinksItems(createLinks(searchText));
-  }, [searchText]);
+  }, [searchText, createLinks]);
+  
 
   return (
     <Main>
