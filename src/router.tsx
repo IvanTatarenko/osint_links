@@ -23,9 +23,7 @@ const router = createHashRouter([
       },
     ],
   },
-], { 
-  basename: process.env.PUBLIC_URL || '/osint_links'
-});
+]);
 
 
 export default router;
