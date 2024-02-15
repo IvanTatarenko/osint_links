@@ -3,26 +3,24 @@ import App from "./App";
 import PeoplePage from "./pages/people.page";
 import CompanyPage from "./pages/company.page";
 
-const router = createBrowserRouter(
-  [
-    {
-      path: "/",
-      element: <App />,
-      children: [
-        {
-          path: "osint_links/people/",
-          element: <PeoplePage />,
-        },
-        {
-          path: "osint_links/company/",
-          element: <CompanyPage />,
-        },
-      ],
-    },
-  ],
+const router = createBrowserRouter([
   {
-    basename: process.env.PUBLIC_URL || "/osint_links",
-  }
-);
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "people",
+        element: <PeoplePage />,
+      },
+      {
+        path: "company",
+        element: <CompanyPage />,
+      },
+    ],
+  },
+], { 
+  basename: process.env.PUBLIC_URL || '/osint_links'
+});
+
 
 export default router;
