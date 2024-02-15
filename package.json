@@ -2,6 +2,7 @@
   "name": "front",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ivantatarenko.github.io/osint_links/",
   "dependencies": {
     "@ant-design/icons": "^5.3.0",
     "@emotion/react": "^11.11.3",
