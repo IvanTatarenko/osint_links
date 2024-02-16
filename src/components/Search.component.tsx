@@ -4,23 +4,26 @@ import styled from "styled-components";
 
 
 
-const MainInputDiv = styled.div`
+const MainInputDiv = styled.div<{width: string}>`
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  width: 250px;
+  width: ${({ width }) => width};
   margin-top: 50px;
   margin-bottom: 50px;
 `;
 
 
-const SearchComponent: React.FC<{ placeholder: string, searchText: string; setSearchText: (text: string) => void }> = ({
+
+const SearchComponent: React.FC<{ width: string, placeholder: string, searchText: string; setSearchText: (text: string) => void }> = ({
+  width,
   placeholder,
   searchText,
   setSearchText,
 }) => {
+
   return (
-    <MainInputDiv>
+    <MainInputDiv width={width}>
       <Input
         onChange={(e) => setSearchText(e.target.value)}
         value={searchText}

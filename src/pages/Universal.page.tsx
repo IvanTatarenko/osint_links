@@ -25,15 +25,21 @@ const RightColumn = styled.div`
 
 const UniversalPage: React.FC<{
   UsefulLinksComponent: React.ComponentType<{ linksItems: MenuItem[] }>;
-  usefulLinksItems: MenuItem[]; searchPlaceholder: string; createLinks: any;
-}> = ({ UsefulLinksComponent, usefulLinksItems, searchPlaceholder, createLinks }) => {
+  usefulLinksItems: MenuItem[];
+  searchPlaceholder: string;
+  createLinks: any;
+}> = ({
+  UsefulLinksComponent,
+  usefulLinksItems,
+  searchPlaceholder,
+  createLinks,
+}) => {
   const [searchText, setSearchText] = useState("");
   const [linksItems, setLinksItems] = useState([]);
 
   useEffect(() => {
     setLinksItems(createLinks(searchText));
   }, [searchText, createLinks]);
-  
 
   return (
     <Main>
@@ -42,11 +48,12 @@ const UniversalPage: React.FC<{
       </LeftColumn>
       <CenterColumn>
         <SearchComponent
+          width="250px"
           searchText={searchText}
           setSearchText={setSearchText}
           placeholder={searchPlaceholder}
         />
-        <LinksComponent linksItems={linksItems}/>
+        <LinksComponent linksItems={linksItems} />
       </CenterColumn>
       <RightColumn></RightColumn>
     </Main>
