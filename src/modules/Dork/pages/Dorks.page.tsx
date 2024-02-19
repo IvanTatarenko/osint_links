@@ -3,9 +3,12 @@ import UniversalDorkComponent from '../components/UniversalDork.component';
 import { FaGoogle } from 'react-icons/fa';
 import DorkLinksComponent from '../components/DorkLink.component';
 import { DorkStore, useDorkStore } from '../stores/Dork.store';
-import UniversalUrlParamComponent from '../components/UniversalUrlParam.component';
-import { DefaultOptionType } from 'antd/es/select';
+import UniversalUrlParamComponent from '../../UrlParams/components/UniversalUrlParam.component';
 import SearchComponent from '../../../common/components/Search.component';
+import { interfaceLangItems } from '../../UrlParams/items/interfaceLang.items';
+import { geoItems } from '../../UrlParams/items/geo.items';
+import { contentLangItems } from '../../UrlParams/items/contentLang.items';
+import { UrlParamsStore, useUrlParamsStore } from '../../UrlParams/stores/urlParams.store';
 
 const Main = styled.div`
   display: flex;
@@ -42,8 +45,7 @@ const RightColumn = styled.div`
 
 const DorksPage = () => {
   const dorks = useDorkStore((state: DorkStore) => state);
-
-  const options: DefaultOptionType[] = [{ value: '111', label: 'label' }];
+  const urlParams = useUrlParamsStore((state: UrlParamsStore) => state);
 
   return (
     <Main>
@@ -52,30 +54,30 @@ const DorksPage = () => {
           <UniversalDorkComponent
             label={'Пошук в URL'}
             placeholder={'Приклади: admin, login'}
-            updateSite={dorks.updateInUrlText}
-            updateStatusSiteDork={dorks.toggleInUrlStatus}
-            statusSiteDrok={dorks.inUrlStatus}
+            updateText={dorks.updateInUrlText}
+            updateStatus={dorks.toggleInUrlStatus}
+            status={dorks.inUrlStatus}
           />
           <UniversalDorkComponent
             label={'Пошук в Title сторінки'}
             placeholder={'пошуковий запит'}
-            updateSite={dorks.updateTitleText}
-            updateStatusSiteDork={dorks.toggleTitleStatus}
-            statusSiteDrok={dorks.titleStatus}
+            updateText={dorks.updateTitleText}
+            updateStatus={dorks.toggleTitleStatus}
+            status={dorks.titleStatus}
           />
           <UniversalDorkComponent
             label={'Пошук по конкретному сайту'}
             placeholder={'Приклади: domain.com, domain.*, *.com'}
-            updateSite={dorks.updateSiteText}
-            updateStatusSiteDork={dorks.toggleSiteStatus}
-            statusSiteDrok={dorks.siteStatus}
+            updateText={dorks.updateSiteText}
+            updateStatus={dorks.toggleSiteStatus}
+            status={dorks.siteStatus}
           />
           <UniversalDorkComponent
             label={'Пошук по файлам'}
             placeholder={'Приклади: csv, pdf'}
-            updateSite={dorks.updateFileText}
-            updateStatusSiteDork={dorks.toggleFileStatus}
-            statusSiteDrok={dorks.fileStatus}
+            updateText={dorks.updateFileText}
+            updateStatus={dorks.toggleFileStatus}
+            status={dorks.fileStatus}
           />
         </DorkInputsDiv>
       </LeftColumn>
@@ -85,9 +87,27 @@ const DorksPage = () => {
       </CenterColumn>
       <RightColumn>
         <DorkInputsDiv>
-          <UniversalUrlParamComponent label="Мова інтерфейсу пошукової системи" options={options} />
-          <UniversalUrlParamComponent label="Локація результатів пошуку" options={options} />
-          <UniversalUrlParamComponent label="Мова контенту результатів пошуку" options={options} />
+          <UniversalUrlParamComponent
+            label="Мова інтерфейсу пошукової системи"
+            options={interfaceLangItems}
+            status={urlParams.intefaceLangStatus}
+            updateStatus={urlParams.updateInterfaceLangStatus}
+            updateValue={urlParams.updateInterfaceLangValue}
+          />
+          <UniversalUrlParamComponent
+            label="Локація результатів пошуку"
+            options={geoItems}
+            status={urlParams.geoStatus}
+            updateStatus={urlParams.updateGeoStatus}
+            updateValue={urlParams.updateGeoValue}
+          />
+          <UniversalUrlParamComponent
+            label="Мова контенту результатів пошуку"
+            options={contentLangItems}
+            status={urlParams.contentLangStatus}
+            updateStatus={urlParams.updateContentLangStatus}
+            updateValue={urlParams.updateContentLangValue}
+          />
         </DorkInputsDiv>
       </RightColumn>
     </Main>

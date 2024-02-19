@@ -10,31 +10,25 @@ const StuledInput = styled(Input)`
 `;
 
 interface UniversalDorkComponentProps {
-  updateSite: (value: string) => void;
-  updateStatusSiteDork: () => void;
-  statusSiteDrok: boolean;
+  updateText: (value: string) => void;
+  updateStatus: () => void;
+  status: boolean;
   placeholder: string;
   label: string;
 }
 
-const UniversalDorkComponent: React.FC<UniversalDorkComponentProps> = ({
-  updateSite,
-  updateStatusSiteDork,
-  statusSiteDrok,
-  placeholder,
-  label,
-}) => {
+const UniversalDorkComponent: React.FC<UniversalDorkComponentProps> = ({ updateText, updateStatus, status, placeholder, label }) => {
   return (
     <MainDiv>
       <div>
         <label>{label}</label>
       </div>
       <div>
-        <StuledInput placeholder={placeholder} onChange={(e) => updateSite(e.target.value)} />
+        <StuledInput placeholder={placeholder} onChange={(e) => updateText(e.target.value)} />
         <Switch
-          checked={statusSiteDrok}
+          checked={status}
           onChange={() => {
-            updateStatusSiteDork();
+            updateStatus();
           }}
         />
       </div>
