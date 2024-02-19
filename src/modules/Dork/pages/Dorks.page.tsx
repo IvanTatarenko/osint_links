@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import UniversalDorkComponent from '../components/UniversalDork.component';
 import { FaGoogle } from 'react-icons/fa';
@@ -42,60 +41,53 @@ const RightColumn = styled.div`
 `;
 
 const DorksPage = () => {
-  const [inputText, setInpitText] = useState('');
-
   const dorks = useDorkStore((state: DorkStore) => state);
 
-  useEffect(() => {
-    const combiDorks = () => {
-      const statuses = [dorks.siteStatus, dorks.titleStatus];
-      const texts = [dorks.siteText, dorks.titleText];
-
-      let combinedText = '';
-      for (let index = 0; index < statuses.length; index++) {
-        if (statuses[index]) {
-          combinedText += texts[index] + ' ';
-        }
-      }
-      combinedText += inputText;
-      dorks.updateSearchWithDork(combinedText.trim());
-    };
-
-    combiDorks();
-  }, [dorks.siteText, dorks.siteStatus, dorks.titleText, dorks.titleStatus, dorks.updateSearchWithDork, inputText]);
-
-
-const options: DefaultOptionType[] = [{ value: '111', label: 'label' }];
+  const options: DefaultOptionType[] = [{ value: '111', label: 'label' }];
 
   return (
     <Main>
       <LeftColumn>
         <DorkInputsDiv>
           <UniversalDorkComponent
+            label={'Пошук в URL'}
+            placeholder={'Приклади: admin, login'}
+            updateSite={dorks.updateInUrlText}
+            updateStatusSiteDork={dorks.toggleInUrlStatus}
+            statusSiteDrok={dorks.inUrlStatus}
+          />
+          <UniversalDorkComponent
+            label={'Пошук в Title сторінки'}
+            placeholder={'пошуковий запит'}
+            updateSite={dorks.updateTitleText}
+            updateStatusSiteDork={dorks.toggleTitleStatus}
+            statusSiteDrok={dorks.titleStatus}
+          />
+          <UniversalDorkComponent
             label={'Пошук по конкретному сайту'}
-            placeholder={'site.com'}
+            placeholder={'Приклади: domain.com, domain.*, *.com'}
             updateSite={dorks.updateSiteText}
             updateStatusSiteDork={dorks.toggleSiteStatus}
             statusSiteDrok={dorks.siteStatus}
           />
           <UniversalDorkComponent
-            label={'Пошук в Title сторінки'}
-            placeholder={'Title'}
-            updateSite={dorks.updateTitleText}
-            updateStatusSiteDork={dorks.toggleTitleStatus}
-            statusSiteDrok={dorks.titleStatus}
+            label={'Пошук по файлам'}
+            placeholder={'Приклади: csv, pdf'}
+            updateSite={dorks.updateFileText}
+            updateStatusSiteDork={dorks.toggleFileStatus}
+            statusSiteDrok={dorks.fileStatus}
           />
         </DorkInputsDiv>
       </LeftColumn>
       <CenterColumn>
-        <SearchComponent width="450px" searchText={inputText} setSearchText={setInpitText} placeholder="Пошук" />
+        <SearchComponent width="450px" searchText={dorks.searchText} setSearchText={dorks.updateSearchText} placeholder="Пошук" />
         <DorkLinksComponent icon={<FaGoogle size={50} />} />
       </CenterColumn>
       <RightColumn>
         <DorkInputsDiv>
           <UniversalUrlParamComponent label="Мова інтерфейсу пошукової системи" options={options} />
-          <UniversalUrlParamComponent label="Локація результатів пошуку" options={options}/>
-          <UniversalUrlParamComponent label="Мова контенту результатів пошуку" options={options}/>
+          <UniversalUrlParamComponent label="Локація результатів пошуку" options={options} />
+          <UniversalUrlParamComponent label="Мова контенту результатів пошуку" options={options} />
         </DorkInputsDiv>
       </RightColumn>
     </Main>
