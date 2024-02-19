@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import SearchComponent from '../components/Search.component';
-import { useSiteDorkStore } from '../stores/SiteDork.store';
 import UniversalDorkComponent from '../components/UniversalDork.component';
-import { useTitleDorkStore } from '../stores/TitleDork.store';
 import { FaGoogle } from 'react-icons/fa';
 import DorkLinksComponent from '../components/DorkLink.component';
-import { useDorkStore } from '../stores/Dork.store';
+import { DorkStore, useDorkStore } from '../stores/Dork.store';
+import UniversalUrlParamComponent from '../components/UniversalUrlParam.component';
+import { DefaultOptionType } from 'antd/es/select';
+import SearchComponent from '../../../common/components/Search.component';
 
 const Main = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ const Main = styled.div`
   width: 100%;
 `;
 
-const DorkUnputsDiv = styled.div`
+const DorkInputsDiv = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #494949;
@@ -44,22 +44,12 @@ const RightColumn = styled.div`
 const DorksPage = () => {
   const [inputText, setInpitText] = useState('');
 
-  const updateSearchTextWhithDork = useDorkStore((state: any) => state.updateText);
-
-  const updateSiteTextDork = useSiteDorkStore((state: any) => state.updateText);
-  const siteTextDork = useSiteDorkStore((state: any) => state.text);
-  const updateStatusSiteDork = useSiteDorkStore((state: any) => state.toggleStatus);
-  const statusSiteDrok = useSiteDorkStore((state: any) => state.status);
-
-  const updateTitleTextDork = useTitleDorkStore((state: any) => state.updateText);
-  const titleTextDork = useTitleDorkStore((state: any) => state.text);
-  const updateStatusTitleDork = useTitleDorkStore((state: any) => state.toggleStatus);
-  const statusTitleDrok = useTitleDorkStore((state: any) => state.status);
+  const dorks = useDorkStore((state: DorkStore) => state);
 
   useEffect(() => {
     const combiDorks = () => {
-      const statuses = [statusSiteDrok, statusTitleDrok];
-      const texts = [siteTextDork, titleTextDork];
+      const statuses = [dorks.siteStatus, dorks.titleStatus];
+      const texts = [dorks.siteText, dorks.titleText];
 
       let combinedText = '';
       for (let index = 0; index < statuses.length; index++) {
@@ -68,37 +58,45 @@ const DorksPage = () => {
         }
       }
       combinedText += inputText;
-      updateSearchTextWhithDork(combinedText.trim())
+      dorks.updateSearchWithDork(combinedText.trim());
     };
 
     combiDorks();
-  }, [siteTextDork, statusSiteDrok, titleTextDork, statusTitleDrok, inputText, updateSearchTextWhithDork]);
+  }, [dorks.siteText, dorks.siteStatus, dorks.titleText, dorks.titleStatus, dorks.updateSearchWithDork, inputText]);
+
+
+const options: DefaultOptionType[] = [{ value: '111', label: 'label' }];
 
   return (
     <Main>
       <LeftColumn>
-        <DorkUnputsDiv>
+        <DorkInputsDiv>
           <UniversalDorkComponent
             label={'Пошук по конкретному сайту'}
             placeholder={'site.com'}
-            updateSite={updateSiteTextDork}
-            updateStatusSiteDork={updateStatusSiteDork}
-            statusSiteDrok={statusSiteDrok}
+            updateSite={dorks.updateSiteText}
+            updateStatusSiteDork={dorks.toggleSiteStatus}
+            statusSiteDrok={dorks.siteStatus}
           />
           <UniversalDorkComponent
             label={'Пошук в Title сторінки'}
             placeholder={'Title'}
-            updateSite={updateTitleTextDork}
-            updateStatusSiteDork={updateStatusTitleDork}
-            statusSiteDrok={statusTitleDrok}
+            updateSite={dorks.updateTitleText}
+            updateStatusSiteDork={dorks.toggleTitleStatus}
+            statusSiteDrok={dorks.titleStatus}
           />
-        </DorkUnputsDiv>
+        </DorkInputsDiv>
       </LeftColumn>
       <CenterColumn>
         <SearchComponent width="450px" searchText={inputText} setSearchText={setInpitText} placeholder="Пошук" />
-        <DorkLinksComponent icon={<FaGoogle size={50} />}/>
+        <DorkLinksComponent icon={<FaGoogle size={50} />} />
       </CenterColumn>
       <RightColumn>
+        <DorkInputsDiv>
+          <UniversalUrlParamComponent label="Мова інтерфейсу пошукової системи" options={options} />
+          <UniversalUrlParamComponent label="Локація результатів пошуку" options={options}/>
+          <UniversalUrlParamComponent label="Мова контенту результатів пошуку" options={options}/>
+        </DorkInputsDiv>
       </RightColumn>
     </Main>
   );

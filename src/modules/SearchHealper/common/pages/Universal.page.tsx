@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { MenuItem } from "../items/Menu.items";
+import { MenuItem } from "../../../../common/items/Menu.items";
 import styled from "styled-components";
-import SearchComponent from "../components/Search.component";
 import LinksComponent from "../components/Links.component";
+import SearchComponent from "../../../../common/components/Search.component";
 
 const Main = styled.div`
   display: flex;

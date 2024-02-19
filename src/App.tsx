@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
-import MenuComponent from "./components/Menu.component";
 import { ConfigProvider } from "antd";
 import { theme } from "./theme";
+import MenuComponent from "./common/components/Menu.component";
 
 const App = () => {
   return (

@@ -1,7 +1,7 @@
-import UsefulLinksComponent from "../components/UsefulLinks.component";
+import UsefulLinksComponent from "../../common/components/UsefulLinks.component";
 import CreateLinksPeople from "../items/CreateLinksPeople";
 import usefulLinksPeopleItems from "../items/UsefulLinksPeople.items";
-import UniversalPage from "./Universal.page";
+import UniversalPage from "../../common/pages/Universal.page";
 
 
 const PeoplePage = () => {

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Link from "antd/es/typography/Link";
-import { MenuItem } from "../items/Menu.items";
+import { MenuItem } from "../../../../common/items/Menu.items";
 
 const MainDiv = styled.div`
   background-color: #494949;

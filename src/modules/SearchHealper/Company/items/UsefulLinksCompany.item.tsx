@@ -1,5 +1,5 @@
 import { FaBuildingUser } from "react-icons/fa6";
-import { MenuItem } from "./Menu.items";
+import { MenuItem } from "../../../../common/items/Menu.items";
 
 const usefulLinksComanyItems: MenuItem[] = [
   {

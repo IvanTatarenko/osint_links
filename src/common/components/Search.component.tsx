@@ -2,8 +2,6 @@ import { Input } from "antd";
 import React from "react";
 import styled from "styled-components";
 
-
-
 const MainInputDiv = styled.div<{width: string}>`
   display: flex;
   justify-content: space-between;
@@ -12,8 +10,6 @@ const MainInputDiv = styled.div<{width: string}>`
   margin-top: 50px;
   margin-bottom: 50px;
 `;
-
-
 
 const SearchComponent: React.FC<{ width: string, placeholder: string, searchText: string; setSearchText: (text: string) => void }> = ({
   width,
