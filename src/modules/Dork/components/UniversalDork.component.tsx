@@ -1,7 +1,6 @@
 import { Input, Switch, Tooltip } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
-import { CiCircleQuestion } from 'react-icons/ci';
 import { FaRegQuestionCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
