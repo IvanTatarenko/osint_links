@@ -3,6 +3,7 @@ import App from "./App";
 import PeoplePage from "./modules/SearchHealper/People/pages/People.page";
 import CompanyPage from "./modules/SearchHealper/Company/pages/Company.page";
 import DorksPage from "./modules/Dork/pages/Dorks.page";
+import HelpPage from "./modules/Help/pages/Help.page";
 
 const router = createHashRouter([
   {
@@ -20,6 +21,10 @@ const router = createHashRouter([
       {
         path: "dorks",
         element: <DorksPage />,
+      },
+      {
+        path: "help",
+        element: <HelpPage />,
       },
     ],
   },

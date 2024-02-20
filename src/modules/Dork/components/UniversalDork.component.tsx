@@ -1,6 +1,9 @@
-import { Input, Switch } from 'antd';
+import { Input, Switch, Tooltip } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import { CiCircleQuestion } from 'react-icons/ci';
+import { FaRegQuestionCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const MainDiv = styled.div``;
 
@@ -15,13 +18,34 @@ interface UniversalDorkComponentProps {
   status: boolean;
   placeholder: string;
   label: string;
+  hintText: string;
+  hintAnchor: string;
 }
 
-const UniversalDorkComponent: React.FC<UniversalDorkComponentProps> = ({ updateText, updateStatus, status, placeholder, label }) => {
+const UniversalDorkComponent: React.FC<UniversalDorkComponentProps> = ({
+  updateText,
+  updateStatus,
+  status,
+  placeholder,
+  label,
+  hintText,
+  hintAnchor,
+}) => {
   return (
     <MainDiv>
       <div>
-        <label>{label}</label>
+        <label>
+          {label}{' '}
+          <Tooltip
+            title={
+              <span>
+                {hintText} <Link to={`/help/#${hintAnchor}`}>Детальніше</Link>
+              </span>
+            }
+          >
+            <FaRegQuestionCircle />
+          </Tooltip>
+        </label>
       </div>
       <div>
         <StuledInput placeholder={placeholder} onChange={(e) => updateText(e.target.value)} />

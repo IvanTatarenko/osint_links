@@ -75,7 +75,7 @@ export const useDorkStore = create<DorkStore>((set, get) => ({
   fileText: '',
   fileStatus: false,
   updateFileText: (newText: string) => {
-    set(() => ({ fileText: 'site:' + newText }));
+    set(() => ({ fileText: 'filetype:' + newText }));
     combiDorks(get);
   },
   toggleFileStatus: () => {

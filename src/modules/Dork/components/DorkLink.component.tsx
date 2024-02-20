@@ -4,6 +4,7 @@ import { ReactElement } from 'react';
 import TextArea from 'antd/es/input/TextArea';
 import { DorkStore, useDorkStore } from '../stores/Dork.store';
 import { UrlParamsStore, useUrlParamsStore } from '../../UrlParams/stores/urlParams.store';
+import Paragraph from 'antd/es/typography/Paragraph';
 
 const MainDiv = styled.div`
   display: flex;
@@ -22,8 +23,17 @@ const LeftColumnDiv = styled.div`
   flex: 1;
 `;
 const RightColumnDiv = styled.div`
-  flex: 3;
+  flex: 6;
 `;
+
+const StyledParagraph = styled(Paragraph)`
+color: #fff;
+  word-break: break-all;
+`
+
+const StyledTextArea = styled(TextArea)`
+  color: #fff !important;
+`
 
 const DorkLinksComponent = (props: { icon: ReactElement }) => {
   const searchTextWhithDork = useDorkStore((state: DorkStore) => state.searchWithDork);
@@ -40,10 +50,10 @@ const DorkLinksComponent = (props: { icon: ReactElement }) => {
         </Link>
       </LeftColumnDiv>
       <RightColumnDiv>
-      <TextArea value={searchTextWhithDork} />
+      <StyledTextArea disabled value={searchTextWhithDork} autoSize={{ minRows: 3, maxRows: 3 }}/>
       </RightColumnDiv>
       </FirstLine>
-      <div>{url}</div>
+      <StyledParagraph copyable>{encodeURI(url)}</StyledParagraph>
     </MainDiv>
   );
 };

@@ -53,6 +53,8 @@ const DorksPage = () => {
         <DorkInputsDiv>
           <UniversalDorkComponent
             label={'Пошук в URL'}
+            hintText={'Шукає слова, які містяться в URL. Наприклад, inurl:admin покаже сторінки, URL яких містить слово "admin".'}
+            hintAnchor={'dorks'}
             placeholder={'Приклади: admin, login'}
             updateText={dorks.updateInUrlText}
             updateStatus={dorks.toggleInUrlStatus}
@@ -60,6 +62,8 @@ const DorksPage = () => {
           />
           <UniversalDorkComponent
             label={'Пошук в Title сторінки'}
+            hintText={'Пошук в заголовках сторінок сайтів(Title).'}
+            hintAnchor={'intitle'}
             placeholder={'пошуковий запит'}
             updateText={dorks.updateTitleText}
             updateStatus={dorks.toggleTitleStatus}
@@ -67,6 +71,8 @@ const DorksPage = () => {
           />
           <UniversalDorkComponent
             label={'Пошук по конкретному сайту'}
+            hintText={'Використовується для обмеження пошуку інформацією, доступною лише на певному веб-сайті або домені.'}
+            hintAnchor={'site'}
             placeholder={'Приклади: domain.com, domain.*, *.com'}
             updateText={dorks.updateSiteText}
             updateStatus={dorks.toggleSiteStatus}
@@ -74,6 +80,8 @@ const DorksPage = () => {
           />
           <UniversalDorkComponent
             label={'Пошук по файлам'}
+            hintText={'Використовується для пошуку файлів певного типу'}
+            hintAnchor={'filetype'}
             placeholder={'Приклади: csv, pdf'}
             updateText={dorks.updateFileText}
             updateStatus={dorks.toggleFileStatus}
@@ -83,7 +91,7 @@ const DorksPage = () => {
       </LeftColumn>
       <CenterColumn>
         <SearchComponent width="450px" searchText={dorks.searchText} setSearchText={dorks.updateSearchText} placeholder="Пошук" />
-        <DorkLinksComponent icon={<FaGoogle size={50} />} />
+        <DorkLinksComponent icon={<FaGoogle size={69} />} />
       </CenterColumn>
       <RightColumn>
         <DorkInputsDiv>
