@@ -50,10 +50,10 @@ const DorkLinksComponent = (props: { icon: ReactElement }) => {
         </Link>
       </LeftColumnDiv>
       <RightColumnDiv>
-      <StyledTextArea disabled value={searchTextWhithDork} autoSize={{ minRows: 3, maxRows: 3 }}/>
+      <StyledTextArea placeholder='дорки...' disabled value={searchTextWhithDork} autoSize={{ minRows: 3, maxRows: 3 }}/>
       </RightColumnDiv>
       </FirstLine>
-      <StyledParagraph copyable>{encodeURI(url)}</StyledParagraph>
+      <StyledParagraph copyable>{url}</StyledParagraph>
     </MainDiv>
   );
 };

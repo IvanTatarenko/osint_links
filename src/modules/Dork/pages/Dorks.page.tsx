@@ -78,7 +78,7 @@ const DorksPage = () => {
             updateStatus={dorks.toggleSiteStatus}
             status={dorks.siteStatus}
           />
-          <UniversalDorkComponent
+          {/* <UniversalDorkComponent
             label={'Пошук по файлам'}
             hintText={'Використовується для пошуку файлів певного типу'}
             hintAnchor={'filetype'}
@@ -86,7 +86,7 @@ const DorksPage = () => {
             updateText={dorks.updateFileText}
             updateStatus={dorks.toggleFileStatus}
             status={dorks.fileStatus}
-          />
+          /> */}
         </DorkInputsDiv>
       </LeftColumn>
       <CenterColumn>
@@ -97,6 +97,8 @@ const DorksPage = () => {
         <DorkInputsDiv>
           <UniversalUrlParamComponent
             label="Мова інтерфейсу пошукової системи"
+            hintText={'Визначає мову інтерфейсу користувача.'}
+            hintAnchor={'hl'}
             options={interfaceLangItems}
             status={urlParams.intefaceLangStatus}
             updateStatus={urlParams.updateInterfaceLangStatus}
@@ -104,6 +106,8 @@ const DorksPage = () => {
           />
           <UniversalUrlParamComponent
             label="Локація результатів пошуку"
+            hintText={'Вказує на країну для локалізації пошукових результатів.'}
+            hintAnchor={'gl'}
             options={geoItems}
             status={urlParams.geoStatus}
             updateStatus={urlParams.updateGeoStatus}
@@ -111,6 +115,8 @@ const DorksPage = () => {
           />
           <UniversalUrlParamComponent
             label="Мова контенту результатів пошуку"
+            hintText={'Вказує на мову пошукових результатів.'}
+            hintAnchor={'lr'}
             options={contentLangItems}
             status={urlParams.contentLangStatus}
             updateStatus={urlParams.updateContentLangStatus}
