@@ -3,6 +3,7 @@ import { create } from 'zustand';
 interface DorkStoreState {
   searchWithDork: string;
   searchText: string;
+  exactSearchStatus: boolean;
   inUrlText: string;
   inUrlStatus: boolean;
   titleText: string;
@@ -16,6 +17,7 @@ interface DorkStoreState {
 interface DorkStoreActions {
   updateSearchWithDork: (newText: string) => void;
   updateSearchText: (newText: string) => void;
+  toggleExactSearchStatus: () => void;
   updateInUrlText: (newText: string) => void;
   toggleInUrlStatus: () => void;
   updateTitleText: (newText: string) => void;
@@ -36,6 +38,12 @@ export const useDorkStore = create<DorkStore>((set, get) => ({
   searchText: '',
   updateSearchText: (newText: string) => {
     set(() => ({ searchText: '' + newText }));
+    combiDorks(get);
+  },
+  // Точний пошук
+  exactSearchStatus: false,
+  toggleExactSearchStatus: () => {
+    set((state) => ({ exactSearchStatus: !state.exactSearchStatus }));
     combiDorks(get);
   },
   // Пршук тексту в url
@@ -85,7 +93,19 @@ export const useDorkStore = create<DorkStore>((set, get) => ({
 }));
 
 function combiDorks(get: () => DorkStore) {
-  const { searchText, inUrlStatus, titleStatus, inUrlText, titleText, siteText, siteStatus, fileText, fileStatus, updateSearchWithDork } = get();
+  const {
+    searchText,
+    inUrlStatus,
+    titleStatus,
+    inUrlText,
+    titleText,
+    siteText,
+    siteStatus,
+    fileText,
+    fileStatus,
+    exactSearchStatus,
+    updateSearchWithDork,
+  } = get();
   const statuses = [inUrlStatus, titleStatus, siteStatus, fileStatus];
   const texts = [inUrlText, titleText, siteText, fileText];
 
@@ -95,6 +115,11 @@ function combiDorks(get: () => DorkStore) {
       combinedText += texts[index] + ' ';
     }
   }
-  combinedText += searchText;
+  if (exactSearchStatus) {
+    combinedText += '"' + searchText + '"';
+  } else {
+    combinedText += searchText;
+  }
+
   updateSearchWithDork(combinedText.trim());
 }

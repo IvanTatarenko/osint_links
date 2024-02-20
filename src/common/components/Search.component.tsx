@@ -8,7 +8,7 @@ const MainInputDiv = styled.div<{width: string}>`
   gap: 20px;
   width: ${({ width }) => width};
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 5px;
 `;
 
 const SearchComponent: React.FC<{ width: string, placeholder: string, searchText: string; setSearchText: (text: string) => void }> = ({

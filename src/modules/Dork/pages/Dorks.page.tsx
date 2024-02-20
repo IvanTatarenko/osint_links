@@ -9,6 +9,7 @@ import { interfaceLangItems } from '../../UrlParams/items/interfaceLang.items';
 import { geoItems } from '../../UrlParams/items/geo.items';
 import { contentLangItems } from '../../UrlParams/items/contentLang.items';
 import { UrlParamsStore, useUrlParamsStore } from '../../UrlParams/stores/urlParams.store';
+import { Switch } from 'antd';
 
 const Main = styled.div`
   display: flex;
@@ -41,6 +42,11 @@ const LeftColumn = styled.div`
 `;
 const RightColumn = styled.div`
   flex: 1;
+`;
+const StyledSwichContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 `;
 
 const DorksPage = () => {
@@ -91,6 +97,15 @@ const DorksPage = () => {
       </LeftColumn>
       <CenterColumn>
         <SearchComponent width="450px" searchText={dorks.searchText} setSearchText={dorks.updateSearchText} placeholder="Пошук" />
+        <StyledSwichContainer>
+          <Switch
+            checkedChildren="Точний пошук"
+            unCheckedChildren="Точний пошук"
+            checked={dorks.exactSearchStatus}
+            onChange={() => dorks.toggleExactSearchStatus()}
+          />
+        </StyledSwichContainer>
+
         <DorkLinksComponent icon={<FaGoogle size={69} />} />
       </CenterColumn>
       <RightColumn>

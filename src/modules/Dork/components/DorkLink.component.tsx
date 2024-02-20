@@ -14,6 +14,7 @@ const MainDiv = styled.div`
   width: 600px;
   padding: 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 50px;
 `;
 const FirstLine = styled.div`
   display: flex;
