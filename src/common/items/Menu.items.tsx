@@ -13,8 +13,8 @@ export interface MenuItem {
 const menuItems: MenuItem[] = [
   {
     icon: <TbReportSearch />,
-    text: "Дорки",
-    url: "/dorks",
+    text: "Пошуковики",
+    url: "/search-engines",
   },
   {
     icon: <BsPeopleFill />,

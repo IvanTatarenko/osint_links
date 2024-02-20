@@ -1,15 +1,15 @@
 import styled from 'styled-components';
-import UniversalDorkComponent from '../components/UniversalDork.component';
 import { FaGoogle } from 'react-icons/fa';
-import DorkLinksComponent from '../components/DorkLink.component';
-import { DorkStore, useDorkStore } from '../stores/Dork.store';
 import UniversalUrlParamComponent from '../../UrlParams/components/UniversalUrlParam.component';
-import SearchComponent from '../../../common/components/Search.component';
 import { interfaceLangItems } from '../../UrlParams/items/interfaceLang.items';
-import { geoItems } from '../../UrlParams/items/geo.items';
 import { contentLangItems } from '../../UrlParams/items/contentLang.items';
 import { UrlParamsStore, useUrlParamsStore } from '../../UrlParams/stores/urlParams.store';
 import { Switch } from 'antd';
+import SearchComponent from '../../../../common/components/Search.component';
+import { geoItems } from '../../UrlParams/items/geo.items';
+import UniversalDorkComponent from '../../Dork/components/UniversalDork.component';
+import { DorkStore, useDorkStore } from '../../Dork/stores/Dork.store';
+import DorkLinksComponent from '../../Dork/components/DorkLink.component';
 
 const Main = styled.div`
   display: flex;
@@ -49,7 +49,7 @@ const StyledSwichContainer = styled.div`
   gap: 5px;
 `;
 
-const DorksPage = () => {
+const SearchEnginesPage = () => {
   const dorks = useDorkStore((state: DorkStore) => state);
   const urlParams = useUrlParamsStore((state: UrlParamsStore) => state);
 
@@ -143,4 +143,4 @@ const DorksPage = () => {
   );
 };
 
-export default DorksPage;
+export default SearchEnginesPage;
