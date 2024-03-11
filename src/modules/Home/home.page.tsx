@@ -23,7 +23,12 @@ const HomePage = () => {
   return (
     <MainDiv>
       <LeftColumn></LeftColumn>
-      <CenterColumn>Для всіх питань та пропозицій, будь ласка, звертайтеся на адресу: vakummail@gmail.com</CenterColumn>
+      <CenterColumn>
+        <p>
+          Якщо у вас є побажання стосовно додавання додаткових дорків, посилань чи іншого пишіть нам:{' '}
+          <a href="mailto:vakummail@gmail.com">vakummail@gmail.com</a>
+        </p>
+      </CenterColumn>
       <RightColumn></RightColumn>
     </MainDiv>
   );

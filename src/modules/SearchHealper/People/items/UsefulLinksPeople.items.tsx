@@ -13,6 +13,23 @@ const usefulLinksPeopleItems: MenuItem[] = [
     text: 'Компанії, організації та ФОП України',
     url: 'https://clarity-project.info/edrs#google_vignette',
   },
+  {
+    icon: <IoPersonSharp />,
+    text: 'Reveng',
+    url: 'https://reveng.ee/',
+  },
+  {
+    icon: <IoPersonSharp />,
+    text: 'Сервіси якими користується особа',
+    url: 'https://epieos.com/',
+  },
+  {
+    icon: <IoPersonSharp />,
+    text: 'Миротворець',
+    url: 'https://www.list-org.com/',
+  },
 ];
 
+
 export default usefulLinksPeopleItems;
+
