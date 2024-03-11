@@ -4,6 +4,7 @@ import PeoplePage from "./modules/SearchHealper/People/pages/People.page";
 import CompanyPage from "./modules/SearchHealper/Company/pages/Company.page";
 import HelpPage from "./modules/Help/pages/Help.page";
 import SearchEnginesPage from "./modules/SearchEngines/common/pages/SearchEngines.page";
+import HomePage from "./modules/Home/home.page";
 
 const router = createHashRouter([
   {
@@ -26,6 +27,10 @@ const router = createHashRouter([
         path: "help",
         element: <HelpPage />,
       },
+      {
+        path: "/",
+        element: <HomePage />
+      }
     ],
   },
 ]);
