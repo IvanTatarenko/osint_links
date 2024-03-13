@@ -15,6 +15,11 @@ const Main = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  gap: 20px;
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const DorkInputsDiv = styled.div`
