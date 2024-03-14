@@ -102,15 +102,15 @@ const SearchEnginesPage = () => {
             updateStatus={dorks.toggleSiteStatus}
             status={dorks.siteStatus}
           />
-          {/* <UniversalDorkComponent
-            label={'Пошук по файлам'}
-            hintText={'Використовується для пошуку файлів певного типу'}
+          <UniversalDorkComponent
+            label={'Пошук файлу'}
+            hintText={'Використовується для пошуку файлів певного типу. Працює тільки в парі з пошуком по сайту'}
             hintAnchor={'filetype'}
-            placeholder={'Приклади: csv, pdf'}
+            placeholder={'Приклади: pdf'}
             updateText={dorks.updateFileText}
             updateStatus={dorks.toggleFileStatus}
             status={dorks.fileStatus}
-          /> */}
+          />
         </DorkInputsDiv>
       </LeftColumn>
       <CenterColumn>

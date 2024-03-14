@@ -88,8 +88,15 @@ export const useDorkStore = create<DorkStore>((set, get) => ({
   },
   toggleFileStatus: () => {
     set((state) => ({ fileStatus: !state.fileStatus }));
+    set((state) => {
+        if (!state.siteStatus && state.fileStatus) {
+            return { siteStatus: true };
+        }
+        return {};
+    });
     combiDorks(get);
-  },
+},
+
 }));
 
 function combiDorks(get: () => DorkStore) {
