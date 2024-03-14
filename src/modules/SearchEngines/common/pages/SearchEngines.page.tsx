@@ -16,7 +16,7 @@ const Main = styled.div`
   justify-content: center;
   width: 100%;
   gap: 20px;
-  @media (max-width: 1024px) {
+  @media (max-width: 1400px) {
     flex-direction: column;
     align-items: center;
   }
@@ -34,6 +34,10 @@ const DorkInputsDiv = styled.div`
   width: 300px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   gap: 15px;
+  @media (max-width: 600px) {
+    width: 80vw;
+    margin: 0;
+  }
 `;
 
 const CenterColumn = styled.div`
@@ -41,12 +45,21 @@ const CenterColumn = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  @media (max-width: 1400px) {
+    order: 1
+  }
 `;
 const LeftColumn = styled.div`
   flex: 1;
+  @media (max-width: 1400px) {
+    order: 2
+  }
 `;
 const RightColumn = styled.div`
   flex: 1;
+  @media (max-width: 1400px) {
+    order: 3
+  }
 `;
 const StyledSwichContainer = styled.div`
   display: flex;

@@ -12,6 +12,10 @@ const MainDiv = styled.div`
   padding-bottom: 25px;
   width: 300px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  @media (max-width: 758px) {
+    margin-left: 0px;
+    width: 80vw;
+  }
 `;
 
 const Menu = styled.ul`

@@ -7,13 +7,18 @@ const MainDiv = styled.div`
   border-radius: 20px;
   width: 600px;
   padding: 20px;
+  margin-top: 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  @media (max-width: 768px) {
+    width: 80vw;
+  }
 `;
 const PlatformDiv = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-start;
   gap: 15px;
+  flex-wrap: wrap;
 `;
 const LinksDiv = styled.div`
   display: flex;

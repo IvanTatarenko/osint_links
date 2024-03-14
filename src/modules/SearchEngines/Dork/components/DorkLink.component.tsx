@@ -15,11 +15,14 @@ const MainDiv = styled.div`
   padding: 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   margin-top: 50px;
+  @media (max-width: 758px) {
+    width: 80vw;
+  }
 `;
 const FirstLine = styled.div`
   display: flex;
   margin-bottom: 10px;
-`
+`;
 const LeftColumnDiv = styled.div`
   flex: 1;
 `;
@@ -28,13 +31,13 @@ const RightColumnDiv = styled.div`
 `;
 
 const StyledParagraph = styled(Paragraph)`
-color: #fff;
+  color: #fff;
   word-break: break-all;
-`
+`;
 
 const StyledTextArea = styled(TextArea)`
   color: #fff !important;
-`
+`;
 
 const DorkLinksComponent = (props: { icon: ReactElement }) => {
   const searchTextWhithDork = useDorkStore((state: DorkStore) => state.searchWithDork);
@@ -45,14 +48,14 @@ const DorkLinksComponent = (props: { icon: ReactElement }) => {
   return (
     <MainDiv>
       <FirstLine>
-      <LeftColumnDiv>
-        <Link href={`https://www.google.ru/search?q=${searchTextWhithDork}${urlParams}`} target="_blank">
-          {props.icon}
-        </Link>
-      </LeftColumnDiv>
-      <RightColumnDiv>
-      <StyledTextArea placeholder='дорки...' disabled value={searchTextWhithDork} autoSize={{ minRows: 3, maxRows: 3 }}/>
-      </RightColumnDiv>
+        <LeftColumnDiv>
+          <Link href={`https://www.google.ru/search?q=${searchTextWhithDork}${urlParams}`} target="_blank">
+            {props.icon}
+          </Link>
+        </LeftColumnDiv>
+        <RightColumnDiv>
+          <StyledTextArea placeholder="дорки..." disabled value={searchTextWhithDork} autoSize={{ minRows: 3, maxRows: 3 }} />
+        </RightColumnDiv>
       </FirstLine>
       <StyledParagraph copyable>{url}</StyledParagraph>
     </MainDiv>

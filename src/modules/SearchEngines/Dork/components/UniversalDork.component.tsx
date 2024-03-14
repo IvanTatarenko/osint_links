@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import { FaRegQuestionCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const MainDiv = styled.div``;
+const MainDiv = styled.div`
+display: flex;
+flex-direction: column;
+`;
 
 const StuledInput = styled(Input)`
   width: 200px;

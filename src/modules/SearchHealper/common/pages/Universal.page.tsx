@@ -20,9 +20,15 @@ const CenterColumn = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  @media (max-width: 1024px) {
+    order: 1;
+  }
 `;
 const LeftColumn = styled.div`
   flex: 1;
+  @media (max-width: 1024px) {
+    order: 2;
+  }
 `;
 const RightColumn = styled.div`
   flex: 1;

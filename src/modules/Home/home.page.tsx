@@ -24,15 +24,23 @@ const RightColumn = styled.div`
   flex: 1;
 `;
 
+const MainText = styled.p`
+  margin: 20px;
+`
+
+const MailLink = styled.a`
+  color: #fff;
+`
+
 const HomePage = () => {
   return (
     <MainDiv>
       <LeftColumn></LeftColumn>
       <CenterColumn>
-        <p>
+        <MainText>
           Якщо у вас є побажання стосовно додавання додаткових дорків, посилань чи іншого пишіть нам:{' '}
-          <a href="mailto:vakummail@gmail.com">vakummail@gmail.com</a>
-        </p>
+          <MailLink href="mailto:vakummail@gmail.com">vakummail@gmail.com</MailLink>
+        </MainText>
       </CenterColumn>
       <RightColumn></RightColumn>
     </MainDiv>

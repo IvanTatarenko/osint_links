@@ -7,11 +7,7 @@ const Main = styled.div`
   justify-content: center;
   width: 100%;
   gap: 20px;
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    align-items: center;
-  }
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
   }
@@ -21,8 +17,9 @@ const CenterColumn = styled.div`
   flex: 2;
   display: flex;
   flex-direction: column;
-  @media (max-width: 1024px) {
-    margin: 10px;
+  @media (max-width: 768px) {
+    margin-left: 15px;
+    margin-right: 15px;
   }
 `;
 const LeftColumn = styled.div`
@@ -44,6 +41,10 @@ const AnchorMenu = styled.div`
   width: 300px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   gap: 15px;
+  @media (max-width: 758px) {
+    margin-left: 0px;
+    width: 80vw;
+  }
 `;
 
 const StyledA = styled.a`
@@ -57,6 +58,17 @@ const StyledA = styled.a`
     text-decoration: underline;
   }
 `;
+
+const StyledP = styled.p`
+
+`
+
+const StyledH2 = styled.h2`
+
+`
+const StyledH3 = styled.h3`
+
+`
 
 const HelpPage = () => {
   const refs = useRef<{ [key: string]: React.RefObject<HTMLDivElement> }>(
@@ -111,12 +123,12 @@ const HelpPage = () => {
       <CenterColumn>
         {helpItems.map((item) => (
           <div key={item.anchor} ref={refs.current[item.anchor]} id={item.anchor}>
-            <h2>{item.title}</h2>
-            <p>{item.text}</p>
+            <StyledH2>{item.title}</StyledH2>
+            <StyledP>{item.text}</StyledP>
             {item.childrens?.map((child) => (
               <div key={child.anchor} ref={refs.current[child.anchor]} id={child.anchor}>
-                <h3>{child.title}</h3>
-                <p>{child.text}</p>
+                <StyledH3>{child.title}</StyledH3>
+                <StyledP>{child.text}</StyledP>
               </div>
             ))}
           </div>
