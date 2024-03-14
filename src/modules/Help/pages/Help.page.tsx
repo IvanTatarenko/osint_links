@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, createRef } from 'react';
+import React, { useEffect, useRef, createRef, FC, useState } from 'react';
 import styled from 'styled-components';
-import helpItems, { HelpItem } from '../items/help.items';
+import { HelpItem } from '../../../api/helpApi/helpApi.types';
+import { getHelpItems } from '../../../api/helpApi/helpApi';
 
 const Main = styled.div`
   display: flex;
@@ -18,8 +19,7 @@ const CenterColumn = styled.div`
   display: flex;
   flex-direction: column;
   @media (max-width: 768px) {
-    margin-left: 15px;
-    margin-right: 15px;
+    width: 90vw;
   }
 `;
 const LeftColumn = styled.div`
@@ -59,27 +59,39 @@ const StyledA = styled.a`
   }
 `;
 
-const StyledP = styled.p`
+const StyledP = styled.p``;
+const StyledH2 = styled.h2``;
+const StyledH3 = styled.h3``;
 
-`
+interface Refs {
+  [key: string]: React.RefObject<HTMLDivElement>;
+}
 
-const StyledH2 = styled.h2`
+const HelpPage: FC = () => {
+  const [helpItems, setHelpItems] = useState<HelpItem[]>([]);
+  const refs = useRef<Refs>({});
 
-`
-const StyledH3 = styled.h3`
+  useEffect(() => {
+    const fetchHelpItems = async () => {
+      try {
+        const response = await getHelpItems();
+        setHelpItems(response);
 
-`
+        const initialRefs: Refs = response.reduce<Refs>((acc: Refs, item: HelpItem) => {
+          acc[item.anchor] = createRef<HTMLDivElement>();
+          item.childrens?.forEach((child: HelpItem) => {
+            acc[child.anchor] = createRef<HTMLDivElement>();
+          });
+          return acc;
+        }, {});
+        refs.current = initialRefs;
+      } catch (error) {
+        console.error('Помилка при отриманні даних:', error);
+      }
+    };
 
-const HelpPage = () => {
-  const refs = useRef<{ [key: string]: React.RefObject<HTMLDivElement> }>(
-    helpItems.reduce<{ [key: string]: React.RefObject<HTMLDivElement> }>((acc, item) => {
-      acc[item.anchor] = createRef<HTMLDivElement>();
-      item.childrens?.forEach((child) => {
-        acc[child.anchor] = createRef<HTMLDivElement>();
-      });
-      return acc;
-    }, {}),
-  );
+    fetchHelpItems();
+  }, []);
 
   useEffect(() => {
     const hashParts = window.location.hash.split('#');
@@ -87,7 +99,7 @@ const HelpPage = () => {
     if (elementId && refs.current[elementId]) {
       refs.current[elementId].current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  }, []);
+  }, [helpItems]);
 
   const scrollToSection = (id: string) => {
     const ref = refs.current[id];
@@ -96,7 +108,12 @@ const HelpPage = () => {
     }
   };
 
-  const RenderMenuItem = ({ item, onClick }: any) => (
+  interface MenuItemProps {
+    item: HelpItem;
+    onClick: (id: string) => void;
+  }
+
+  const RenderMenuItem: FC<MenuItemProps> = ({ item, onClick }) => (
     <div>
       <StyledA key={item.anchor} onClick={() => onClick(item.anchor)}>
         {item.title}

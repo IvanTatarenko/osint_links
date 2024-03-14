@@ -1,6 +1,6 @@
 import { IoPersonSharp } from 'react-icons/io5';
 import { FaBuildingUser } from 'react-icons/fa6';
-import { MenuItem } from '../../../../common/items/Menu.items';
+import { MenuItem } from '../../common/items/Menu.items';
 
 const usefulLinksPeopleItems: MenuItem[] = [
   {

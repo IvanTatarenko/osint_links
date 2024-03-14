@@ -1,9 +1,4 @@
-export interface HelpItem {
-  title: string;
-  text: string;
-  anchor: string;
-  childrens?: HelpItem[];
-}
+import { HelpItem } from "./helpApi.types";
 
 const helpItems: HelpItem[] = [
   {
