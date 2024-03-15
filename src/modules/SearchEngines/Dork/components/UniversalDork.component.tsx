@@ -3,10 +3,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaRegQuestionCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { ValidationStatus } from '../stores/Dork.store';
 
 const MainDiv = styled.div`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 `;
 
 const StuledInput = styled(Input)`
@@ -22,6 +23,7 @@ interface UniversalDorkComponentProps {
   label: string;
   hintText: string;
   hintAnchor: string;
+  validationStatus: ValidationStatus;
 }
 
 const UniversalDorkComponent: React.FC<UniversalDorkComponentProps> = ({
@@ -32,6 +34,7 @@ const UniversalDorkComponent: React.FC<UniversalDorkComponentProps> = ({
   label,
   hintText,
   hintAnchor,
+  validationStatus,
 }) => {
   return (
     <MainDiv>
@@ -50,7 +53,7 @@ const UniversalDorkComponent: React.FC<UniversalDorkComponentProps> = ({
         </label>
       </div>
       <div>
-        <StuledInput placeholder={placeholder} onChange={(e) => updateText(e.target.value)} />
+        <StuledInput status={validationStatus} placeholder={placeholder} onChange={(e) => updateText(e.target.value)} />
         <Switch
           checked={status}
           onChange={() => {

@@ -83,6 +83,7 @@ const SearchEnginesPage = () => {
             updateText={dorks.updateInUrlText}
             updateStatus={dorks.toggleInUrlStatus}
             status={dorks.inUrlStatus}
+            validationStatus={dorks.inUrlValidationStatus}
           />
           <UniversalDorkComponent
             label={'Пошук в Title сторінки'}
@@ -92,6 +93,7 @@ const SearchEnginesPage = () => {
             updateText={dorks.updateTitleText}
             updateStatus={dorks.toggleTitleStatus}
             status={dorks.titleStatus}
+            validationStatus={dorks.titleValidationStatus}
           />
           <UniversalDorkComponent
             label={'Пошук по конкретному сайту'}
@@ -101,6 +103,7 @@ const SearchEnginesPage = () => {
             updateText={dorks.updateSiteText}
             updateStatus={dorks.toggleSiteStatus}
             status={dorks.siteStatus}
+            validationStatus={dorks.siteValidationStatus}
           />
           <UniversalDorkComponent
             label={'Пошук файлу'}
@@ -110,6 +113,7 @@ const SearchEnginesPage = () => {
             updateText={dorks.updateFileText}
             updateStatus={dorks.toggleFileStatus}
             status={dorks.fileStatus}
+            validationStatus={dorks.fileValidationStatus}
           />
         </DorkInputsDiv>
       </LeftColumn>

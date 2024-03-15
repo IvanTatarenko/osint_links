@@ -1,4 +1,11 @@
 import { create } from 'zustand';
+import { fileTypeValidation } from '../inputValidations/fileTypeValidation';
+import { siteValidation } from '../inputValidations/siteValidation';
+
+export enum ValidationStatus {
+  true = '',
+  false = 'error',
+}
 
 interface DorkStoreState {
   searchWithDork: string;
@@ -6,12 +13,16 @@ interface DorkStoreState {
   exactSearchStatus: boolean;
   inUrlText: string;
   inUrlStatus: boolean;
+  inUrlValidationStatus: ValidationStatus;
   titleText: string;
   titleStatus: boolean;
+  titleValidationStatus: ValidationStatus;
   siteText: string;
   siteStatus: boolean;
+  siteValidationStatus: ValidationStatus;
   fileText: string;
   fileStatus: boolean;
+  fileValidationStatus: ValidationStatus;
 }
 
 interface DorkStoreActions {
@@ -49,6 +60,7 @@ export const useDorkStore = create<DorkStore>((set, get) => ({
   // Пршук тексту в url
   inUrlText: '',
   inUrlStatus: false,
+  inUrlValidationStatus: ValidationStatus.true,
   updateInUrlText: (newText: string) => {
     set(() => ({ inUrlText: 'inurl:' + newText }));
     combiDorks(get);
@@ -60,6 +72,7 @@ export const useDorkStore = create<DorkStore>((set, get) => ({
   // Пошук тексту в title
   titleText: '',
   titleStatus: false,
+  titleValidationStatus: ValidationStatus.true,
   updateTitleText: (newText: string) => {
     set(() => ({ titleText: 'intitle:' + newText }));
     combiDorks(get);
@@ -71,7 +84,9 @@ export const useDorkStore = create<DorkStore>((set, get) => ({
   // Пошук на конкретному сайті
   siteText: '',
   siteStatus: false,
+  siteValidationStatus: ValidationStatus.true,
   updateSiteText: (newText: string) => {
+    set(() => ({ siteValidationStatus: siteValidation(newText) }));
     set(() => ({ siteText: 'site:' + newText }));
     combiDorks(get);
   },
@@ -82,21 +97,22 @@ export const useDorkStore = create<DorkStore>((set, get) => ({
   // Пошук по файлам
   fileText: '',
   fileStatus: false,
+  fileValidationStatus: ValidationStatus.true,
   updateFileText: (newText: string) => {
+    set(() => ({ fileValidationStatus: fileTypeValidation(newText) }));
     set(() => ({ fileText: 'filetype:' + newText }));
     combiDorks(get);
   },
   toggleFileStatus: () => {
     set((state) => ({ fileStatus: !state.fileStatus }));
     set((state) => {
-        if (!state.siteStatus && state.fileStatus) {
-            return { siteStatus: true };
-        }
-        return {};
+      if (!state.siteStatus && state.fileStatus) {
+        return { siteStatus: true };
+      }
+      return {};
     });
     combiDorks(get);
-},
-
+  },
 }));
 
 function combiDorks(get: () => DorkStore) {
