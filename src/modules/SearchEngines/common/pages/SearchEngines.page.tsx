@@ -109,7 +109,7 @@ const SearchEnginesPage = () => {
           />
           <UniversalDorkComponent
             label={'Пошук файлу'}
-            hintText={'Використовується для пошуку файлів певного типу. Працює тільки в парі з пошуком по сайту'}
+            hintText={'Використовується для пошуку файлів певного типу.'}
             hintAnchor={'filetype'}
             placeholder={'Приклади: pdf'}
             updateText={dorks.updateFileText}
