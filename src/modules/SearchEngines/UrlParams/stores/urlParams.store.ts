@@ -10,6 +10,8 @@ interface UrlParamsStoreState {
   contentLangStatus: boolean;
   contentTypeValue: string;
   contentTypeStatus: boolean;
+  dateValue: string;
+  dateStatus: boolean;
 }
 
 interface UrlParamsStoreActions {
@@ -22,6 +24,8 @@ interface UrlParamsStoreActions {
   updateContentLangStatus: () => void;
   updateContentTypeValue: (newValue: string) => void;
   updateContentTypeStatus: () => void;
+  updateDateValue: (newValue: string) => void;
+  updateDateStatus: () => void;
 }
 
 export type UrlParamsStore = UrlParamsStoreState & UrlParamsStoreActions;
@@ -74,6 +78,18 @@ export const useUrlParamsStore = create<UrlParamsStore>((set, get) => ({
     set((state) => ({ contentTypeStatus: !state.contentTypeStatus }));
     combiDorks(get);
   },
+  // Дати пошуку
+  dateValue: '',
+  dateStatus: false,
+  updateDateValue: (newValue: string) => {
+    console.log(newValue)
+    set(() => ({ dateValue: newValue }));
+    combiDorks(get);
+  },
+  updateDateStatus: () => {
+    set((state) => ({ dateStatus: !state.dateStatus }));
+    combiDorks(get);
+  },
 }));
 
 function combiDorks(get: () => UrlParamsStore) {
@@ -86,10 +102,12 @@ function combiDorks(get: () => UrlParamsStore) {
     contentLangStatus,
     contentTypeValue,
     contentTypeStatus,
+    dateValue,
+    dateStatus,
     updateUrlParams,
   } = get();
-  const statuses = [intefaceLangStatus, geoStatus, contentLangStatus, contentTypeStatus];
-  const texts = [interfaceLangValue, geoValue, contentLangValue, contentTypeValue];
+  const statuses = [intefaceLangStatus, geoStatus, contentLangStatus, contentTypeStatus, dateStatus];
+  const texts = [interfaceLangValue, geoValue, contentLangValue, contentTypeValue, dateValue];
 
   let combinedText = '';
   for (let index = 0; index < statuses.length; index++) {

@@ -11,6 +11,7 @@ import UniversalDorkComponent from '../../Dork/components/UniversalDork.componen
 import { DorkStore, useDorkStore } from '../../Dork/stores/Dork.store';
 import DorkLinksComponent from '../../Dork/components/DorkLink.component';
 import { contentTypeItems } from '../../UrlParams/items/contentType.items';
+import DateRangePikerComponent from '../../DatePicker/components/dateRangePicker';
 
 const Main = styled.div`
   display: flex;
@@ -47,19 +48,19 @@ const CenterColumn = styled.div`
   align-items: center;
   flex-direction: column;
   @media (max-width: 1400px) {
-    order: 1
+    order: 1;
   }
 `;
 const LeftColumn = styled.div`
   flex: 1;
   @media (max-width: 1400px) {
-    order: 2
+    order: 2;
   }
 `;
 const RightColumn = styled.div`
   flex: 1;
   @media (max-width: 1400px) {
-    order: 3
+    order: 3;
   }
 `;
 const StyledSwichContainer = styled.div`
@@ -168,6 +169,14 @@ const SearchEnginesPage = () => {
             status={urlParams.contentTypeStatus}
             updateStatus={urlParams.updateContentTypeStatus}
             updateValue={urlParams.updateContentTypeValue}
+          />
+          <DateRangePikerComponent
+            label="Діапазон пошуку"
+            hintText="Шукає матеріали додані за період часу"
+            hintAnchor="tbs"
+            status={urlParams.dateStatus}
+            updateStatus={urlParams.updateDateStatus}
+            updateValue={urlParams.updateDateValue}
           />
         </DorkInputsDiv>
       </RightColumn>
