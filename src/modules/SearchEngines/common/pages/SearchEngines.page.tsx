@@ -10,6 +10,7 @@ import { geoItems } from '../../UrlParams/items/geo.items';
 import UniversalDorkComponent from '../../Dork/components/UniversalDork.component';
 import { DorkStore, useDorkStore } from '../../Dork/stores/Dork.store';
 import DorkLinksComponent from '../../Dork/components/DorkLink.component';
+import { contentTypeItems } from '../../UrlParams/items/contentType.items';
 
 const Main = styled.div`
   display: flex;
@@ -158,6 +159,15 @@ const SearchEnginesPage = () => {
             status={urlParams.contentLangStatus}
             updateStatus={urlParams.updateContentLangStatus}
             updateValue={urlParams.updateContentLangValue}
+          />
+          <UniversalUrlParamComponent
+            label="Тип контенту"
+            hintText={'Обмежує результати пошуку певним типом контенту'}
+            hintAnchor={'tbm'}
+            options={contentTypeItems}
+            status={urlParams.contentTypeStatus}
+            updateStatus={urlParams.updateContentTypeStatus}
+            updateValue={urlParams.updateContentTypeValue}
           />
         </DorkInputsDiv>
       </RightColumn>

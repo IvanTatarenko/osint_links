@@ -6,8 +6,10 @@ interface UrlParamsStoreState {
   intefaceLangStatus: boolean;
   geoValue: string;
   geoStatus: boolean;
-  contentLangValue: string,
-  contentLangStatus: boolean,
+  contentLangValue: string;
+  contentLangStatus: boolean;
+  contentTypeValue: string;
+  contentTypeStatus: boolean;
 }
 
 interface UrlParamsStoreActions {
@@ -18,6 +20,8 @@ interface UrlParamsStoreActions {
   updateGeoStatus: () => void;
   updateContentLangValue: (newValue: string) => void;
   updateContentLangStatus: () => void;
+  updateContentTypeValue: (newValue: string) => void;
+  updateContentTypeStatus: () => void;
 }
 
 export type UrlParamsStore = UrlParamsStoreState & UrlParamsStoreActions;
@@ -59,13 +63,33 @@ export const useUrlParamsStore = create<UrlParamsStore>((set, get) => ({
     set((state) => ({ contentLangStatus: !state.contentLangStatus }));
     combiDorks(get);
   },
+  // Тип контенту
+  contentTypeValue: '&tbm=isch',
+  contentTypeStatus: false,
+  updateContentTypeValue: (newValue: string) => {
+    set(() => ({ contentTypeValue: newValue }));
+    combiDorks(get);
+  },
+  updateContentTypeStatus: () => {
+    set((state) => ({ contentTypeStatus: !state.contentTypeStatus }));
+    combiDorks(get);
+  },
 }));
 
 function combiDorks(get: () => UrlParamsStore) {
-  const { interfaceLangValue, intefaceLangStatus, geoValue, geoStatus, contentLangValue, contentLangStatus, updateUrlParams } =
-    get();
-  const statuses = [intefaceLangStatus,geoStatus, contentLangStatus];
-  const texts = [interfaceLangValue, geoValue, contentLangValue];
+  const {
+    interfaceLangValue,
+    intefaceLangStatus,
+    geoValue,
+    geoStatus,
+    contentLangValue,
+    contentLangStatus,
+    contentTypeValue,
+    contentTypeStatus,
+    updateUrlParams,
+  } = get();
+  const statuses = [intefaceLangStatus, geoStatus, contentLangStatus, contentTypeStatus];
+  const texts = [interfaceLangValue, geoValue, contentLangValue, contentTypeValue];
 
   let combinedText = '';
   for (let index = 0; index < statuses.length; index++) {
